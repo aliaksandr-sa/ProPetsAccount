@@ -110,27 +110,45 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public BlockUserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status) {
+		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
+		user.setBlock(status);
+		accountRepository.save(user);
+		return convertor.convertUserToUserDto(user);
 	}
 
 	@Override
 	public Set<String> addUserFavorite(String login, String id, String token) {
-		// TODO Auto-generated method stub
-		return null;
+		String email = getLoginFromCredential(token);
+		if (email != login) {
+			throw new ConflictException();
+		}
+		User user = accountRepository.findById(login).get();
+		user.addFavorite(id);
+		accountRepository.save(user);
+		return user.getFavoritePosts();
 	}
 
 	@Override
 	public Set<String> removeUserFavorite(String login, String id, String token) {
-		// TODO Auto-generated method stub
-		return null;
+		String email = getLoginFromCredential(token);
+		if (email != login) {
+			throw new ConflictException();
+		}
+		User user = accountRepository.findById(login).get();
+		user.removeFavorite(id);
+		accountRepository.save(user);
+		return user.getFavoritePosts();
 	}
 
 	@Override
 	public Set<String> getUserFavorites(String login, String token) {
-		// TODO Auto-generated method stub
-		return null;
+		String email = getLoginFromCredential(token);
+		if (email != login) {
+			throw new ConflictException();
+		}
+		User user = accountRepository.findById(login).get();
+		return user.getFavoritePosts();
 	}
 	
 	private String[] decodeToken(String token) {

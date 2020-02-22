@@ -22,7 +22,7 @@ public interface AccountService {
 
 	Set<String> addRoles(String login, String role, String token);
 
-	BlockUserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status);
+	UserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status);
 
 	Set<String> addUserFavorite(String login, String id, String token);
 

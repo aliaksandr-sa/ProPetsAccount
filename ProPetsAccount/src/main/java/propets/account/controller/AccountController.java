@@ -59,7 +59,7 @@ public class AccountController {
 	}
 	
 	@PutMapping("/{login}/block/{status}")
-	public BlockUserDto blockUserAccount(@PathVariable String login, @RequestBody BlockUserDto blockUser, String token, @PathVariable boolean status) {
+	public UserDto blockUserAccount(@PathVariable String login, @RequestBody BlockUserDto blockUser, String token, @PathVariable boolean status) {
 		return accountService.blockUserAccount(login, blockUser, token, status);
 	}
 	
