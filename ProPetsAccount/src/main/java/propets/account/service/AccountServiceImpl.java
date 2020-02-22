@@ -70,7 +70,7 @@ public class AccountServiceImpl implements AccountService {
 		if (email != login) {
 			throw new ConflictException();
 		}
-		User user = accountRepository.findById(login).get();
+		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		if (editUser.getAvatar() != null) {
 			user.setAvatar(editUser.getAvatar());
 		}
@@ -106,7 +106,6 @@ public class AccountServiceImpl implements AccountService {
 		user.addRole(role);
 		accountRepository.save(user);
 		return user.getRoles();
-		//1
 	}
 
 	@Override

@@ -19,7 +19,7 @@ import lombok.Singular;
 @Setter
 @Builder
 @EqualsAndHashCode(of = {"email"})
-@Document(collection = "users")
+@Document(collection = "accounts")
 //S
 public class User {
 	String avatar;

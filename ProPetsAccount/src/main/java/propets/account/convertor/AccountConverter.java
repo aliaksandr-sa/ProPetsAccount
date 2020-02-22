@@ -27,6 +27,7 @@ public class AccountConverter {
 				.phone(user.getPhone())
 				.roles(user.getRoles())
 				.block(user.getBlock())
+				.favorites(user.getFavoritePosts())
 				.build();
 
 	

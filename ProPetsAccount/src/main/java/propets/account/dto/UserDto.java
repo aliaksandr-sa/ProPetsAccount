@@ -1,5 +1,6 @@
 package propets.account.dto;
 
+import java.util.List;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -19,4 +20,5 @@ public class UserDto {
 	String phone;
 	boolean block;
 	Set<String> roles;
+	Set<String> favorites;
 }
