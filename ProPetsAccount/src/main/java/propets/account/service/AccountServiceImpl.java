@@ -50,16 +50,17 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public UserDto loginUser(String token) {
 		String login = getLoginFromCredential(token);
+		System.out.println(login);
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		return convertor.convertUserToUserDto(user);
 	}
 
 	@Override
 	public UserDto userInformation(String login, String token) {
-		String email = getLoginFromCredential(token);
-		if (email != login) {
-			throw new ConflictException();
-		}
+//		String email = getLoginFromCredential(token);
+//		if (email != login) {
+//			throw new ConflictException();
+//		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		return convertor.convertUserToUserDto(user);
 	}
