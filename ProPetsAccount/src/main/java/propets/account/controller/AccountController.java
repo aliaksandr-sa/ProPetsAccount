@@ -38,7 +38,7 @@ public class AccountController {
 	}
 	
 	@GetMapping("/{login}/info")
-	public UserDto userInformation(@PathVariable String login, @RequestHeader("Authorization") String token) {
+	public UserDto userInformation(@PathVariable String login, String token) {
 		return accountService.userInformation(login, token);
 	}
 	
