@@ -33,10 +33,8 @@ public class User {
 	@Singular
 	Set<String> favoritePosts;
 	
-	public void addRole(Set<String> roles) {
-		for (String role : roles) {
-			roles.add(role);
-		}
+	public void addRole(String role) {
+		roles.add(role);
 	}
 	
 	public void removeRole(String role) {

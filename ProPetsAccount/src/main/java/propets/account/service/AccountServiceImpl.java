@@ -105,7 +105,10 @@ public class AccountServiceImpl implements AccountService {
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
-		user.addRole(roles.getRoleSet());
+		for (String role : roles.getRoles()) {
+			user.addRole("ROLE_"+role);
+		}
+		
 		accountRepository.save(user);
 		return user.getRoles();
 	}

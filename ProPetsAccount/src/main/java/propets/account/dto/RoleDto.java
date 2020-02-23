@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 public class RoleDto {
-	Set<String> roleSet;
+	Set<String> roles;
 }
