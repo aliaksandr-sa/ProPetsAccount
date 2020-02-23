@@ -68,6 +68,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public UserDto editUserProfile(EditUserDto editUser, String login, String token) {
 		String email = getLoginFromCredential(token);
+		System.out.println(email);
 		if (email != login) {
 			System.out.println(email);
 			throw new ConflictException();
