@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import propets.account.convertor.AccountConverter;
 import propets.account.dao.AccountRepository;
 import propets.account.domain.User;
-import propets.account.dto.BlockUserDto;
 import propets.account.dto.EditUserDto;
 import propets.account.dto.NewUserDto;
 import propets.account.dto.RegisterUserDto;
@@ -114,7 +113,12 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public UserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status) {
+	public UserDto blockUserAccount(String login, String token, boolean status) {
+		String email = getLoginFromCredential(token);
+		User admin = accountRepository.findById(email).orElseThrow(() -> new ConflictException());
+		if (!admin.getRoles().contains("ROLE_ADMIN")) {
+			throw new ConflictException();
+		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		user.setBlock(status);
 		accountRepository.save(user);

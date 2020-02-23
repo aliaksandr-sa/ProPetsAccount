@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import propets.account.dto.BlockUserDto;
 import propets.account.dto.EditUserDto;
 import propets.account.dto.NewUserDto;
 import propets.account.dto.RegisterUserDto;
@@ -60,8 +59,8 @@ public class AccountController {
 	}
 	
 	@PutMapping("/{login}/block/{status}")
-	public UserDto blockUserAccount(@PathVariable String login, @RequestBody BlockUserDto blockUser, @RequestHeader("Authorization") String token, @PathVariable boolean status) {
-		return accountService.blockUserAccount(login, blockUser, token, status);
+	public UserDto blockUserAccount(@PathVariable String login, @RequestHeader("Authorization") String token, @PathVariable boolean status) {
+		return accountService.blockUserAccount(login, token, status);
 	}
 	
 	@PutMapping("/{login}/favorite/{id}")

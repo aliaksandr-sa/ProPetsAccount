@@ -2,7 +2,6 @@ package propets.account.service;
 
 import java.util.Set;
 
-import propets.account.dto.BlockUserDto;
 import propets.account.dto.EditUserDto;
 import propets.account.dto.NewUserDto;
 import propets.account.dto.RegisterUserDto;
@@ -23,7 +22,7 @@ public interface AccountService {
 
 	Set<String> addRoles(String login, RoleDto roles, String token);
 
-	UserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status);
+	UserDto blockUserAccount(String login, String token, boolean status);
 
 	Set<String> addUserFavorite(String login, String id, String token);
 
