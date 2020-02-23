@@ -14,6 +14,7 @@ import propets.account.dto.BlockUserDto;
 import propets.account.dto.EditUserDto;
 import propets.account.dto.NewUserDto;
 import propets.account.dto.RegisterUserDto;
+import propets.account.dto.RoleDto;
 import propets.account.dto.UserDto;
 import propets.account.exceptions.ConflictException;
 
@@ -97,14 +98,14 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Set<String> addRoles(String login, String role, String token) {
+	public Set<String> addRoles(String login, RoleDto roles, String token) {
 		String email = getLoginFromCredential(token);
 		User admin = accountRepository.findById(email).orElseThrow(() -> new ConflictException());
 		if (!admin.getRoles().contains("ROLE_ADMIN")) {
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
-		user.addRole(role);
+		user.addRole(roles.getRoleSet());
 		accountRepository.save(user);
 		return user.getRoles();
 	}

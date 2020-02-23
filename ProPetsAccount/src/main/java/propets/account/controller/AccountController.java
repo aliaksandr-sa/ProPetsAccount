@@ -17,6 +17,7 @@ import propets.account.dto.BlockUserDto;
 import propets.account.dto.EditUserDto;
 import propets.account.dto.NewUserDto;
 import propets.account.dto.RegisterUserDto;
+import propets.account.dto.RoleDto;
 import propets.account.dto.UserDto;
 import propets.account.service.AccountService;
 
@@ -54,9 +55,9 @@ public class AccountController {
 	
 	@PutMapping("/{login}/roles")
 	//Nado vozvraschat' UserDto
-	public Set<String> addUserRoles(@PathVariable String login, @RequestBody String role, @RequestHeader("Authorization") String token) {
+	public Set<String> addUserRoles(@PathVariable String login, @RequestBody RoleDto roles, @RequestHeader("Authorization") String token) {
 		//access permitted only to admin
-		return accountService.addRoles(login, role, token);
+		return accountService.addRoles(login, roles, token);
 	}
 	
 	@PutMapping("/{login}/block/{status}")

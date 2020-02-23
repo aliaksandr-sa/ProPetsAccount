@@ -6,6 +6,7 @@ import propets.account.dto.BlockUserDto;
 import propets.account.dto.EditUserDto;
 import propets.account.dto.NewUserDto;
 import propets.account.dto.RegisterUserDto;
+import propets.account.dto.RoleDto;
 import propets.account.dto.UserDto;
 
 public interface AccountService {
@@ -20,7 +21,7 @@ public interface AccountService {
 
 	UserDto removeUser(String login, String token);
 
-	Set<String> addRoles(String login, String role, String token);
+	Set<String> addRoles(String login, RoleDto roles, String token);
 
 	UserDto blockUserAccount(String login, BlockUserDto blockUser, String token, boolean status);
 
