@@ -103,7 +103,7 @@ public class AccountServiceImpl implements AccountService {
 		if (!admin.getRoles().contains("ROLE_ADMIN")) {
 			throw new ConflictException();
 		}
-		User user = accountRepository.findById(login).get();
+		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		user.addRole(role);
 		accountRepository.save(user);
 		return user.getRoles();
