@@ -69,9 +69,9 @@ public class AccountServiceImpl implements AccountService {
 	public UserDto editUserProfile(EditUserDto editUser, String login, String token) {
 		String email = getLoginFromCredential(token);
 		System.out.println(email);
-		if (email != login) {
-			throw new ConflictException();
-		}
+//		if (email != login) {
+//			throw new ConflictException();
+//		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		if (editUser.getAvatar() != null) {
 			user.setAvatar(editUser.getAvatar());
