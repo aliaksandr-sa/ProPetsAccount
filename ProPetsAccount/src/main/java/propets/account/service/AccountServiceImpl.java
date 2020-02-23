@@ -69,6 +69,7 @@ public class AccountServiceImpl implements AccountService {
 	public UserDto editUserProfile(EditUserDto editUser, String login, String token) {
 		String email = getLoginFromCredential(token);
 		if (email != login) {
+			System.out.println(email);
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
