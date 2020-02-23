@@ -54,7 +54,6 @@ public class AccountController {
 	}
 	
 	@PutMapping("/{login}/roles")
-	//Nado vozvraschat' UserDto
 	public Set<String> addUserRoles(@PathVariable String login, @RequestBody RoleDto roles, @RequestHeader("Authorization") String token) {
 		//access permitted only to admin
 		return accountService.addRoles(login, roles, token);
@@ -71,7 +70,6 @@ public class AccountController {
 	}
 	
 	@DeleteMapping("/{login}/favorite/{id}")
-	//nado vozvr... 1 ID, a ne Iterable
 	public Set<String> removeUserFavorite(@PathVariable String login, @PathVariable String id, @RequestHeader("Authorization") String token) {
 		return accountService.removeUserFavorite(login, id, token);
 	}
