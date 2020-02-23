@@ -43,7 +43,7 @@ public class AccountController {
 	}
 	
 	@PutMapping("/{login}")
-	public UserDto editUserProfile(@RequestBody EditUserDto editUser, @PathVariable String login, String token) {
+	public UserDto editUserProfile(@RequestBody EditUserDto editUser, @PathVariable String login, @RequestHeader("Authorization") String token) {
 		return accountService.editUserProfile(editUser, login, token);
 	}
 	
