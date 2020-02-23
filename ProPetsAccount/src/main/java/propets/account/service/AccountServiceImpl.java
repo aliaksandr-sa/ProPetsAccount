@@ -58,7 +58,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public UserDto userInformation(String login, String token) {
 //		String email = getLoginFromCredential(token);
-//		if (email != login) {
+//		if (!email.equals(login)) {
 //			throw new ConflictException();
 //		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
@@ -88,7 +88,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public UserDto removeUser(String login, String token) {
 		String email = getLoginFromCredential(token);
-		if (email != login) {
+		if (!email.equals(login)) {
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).get();
@@ -120,7 +120,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Set<String> addUserFavorite(String login, String id, String token) {
 		String email = getLoginFromCredential(token);
-		if (email != login) {
+		if (!email.equals(login)) {
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).get();
@@ -132,7 +132,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Set<String> removeUserFavorite(String login, String id, String token) {
 		String email = getLoginFromCredential(token);
-		if (email != login) {
+		if (!email.equals(login)) {
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).get();
@@ -144,7 +144,7 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Set<String> getUserFavorites(String login, String token) {
 		String email = getLoginFromCredential(token);
-		if (email != login) {
+		if (!email.equals(login)) {
 			throw new ConflictException();
 		}
 		User user = accountRepository.findById(login).get();
