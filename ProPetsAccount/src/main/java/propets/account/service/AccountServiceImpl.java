@@ -127,7 +127,7 @@ public class AccountServiceImpl implements AccountService {
 		if (!email.equals(login)) {
 			throw new ConflictException();
 		}
-		User user = accountRepository.findById(login).get();
+		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		user.addFavorite(id);
 		accountRepository.save(user);
 		return user.getFavoritePosts();

@@ -42,11 +42,11 @@ public class User {
 	}
 	
 	public void addFavorite(String postId) {
-		roles.add(postId);
+		favoritePosts.add(postId);
 	}
 	
 	public void removeFavorite(String postId) {
-		roles.remove(postId);
+		favoritePosts.remove(postId);
 	}
 
 
