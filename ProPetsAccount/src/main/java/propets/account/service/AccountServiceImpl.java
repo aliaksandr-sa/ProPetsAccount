@@ -106,7 +106,7 @@ public class AccountServiceImpl implements AccountService {
 		}
 		User user = accountRepository.findById(login).orElseThrow(() -> new ConflictException());
 		for (String role : roles.getRoles()) {
-			user.addRole("ROLE_"+role);
+			user.addRole("ROLE_"+role.toUpperCase());
 		}
 		
 		accountRepository.save(user);
