@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import propets.account.convertor.AccountConverter;
@@ -24,6 +25,8 @@ public class AccountServiceImpl implements AccountService {
 	AccountRepository accountRepository;
 	@Autowired
 	AccountConverter convertor;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Override
 	public RegisterUserDto registerUser(NewUserDto newUser) {
@@ -35,23 +38,18 @@ public class AccountServiceImpl implements AccountService {
 		if (accountRepository.existsById(login)) {
 			throw new ConflictException();
 		}
-		String encodedPassword = Encoder(newUser.getPassword());
+		String hashPassword = passwordEncoder.encode(newUser.getPassword());
 		User user = User.builder()
 				.avatar("https://www.gravatar.com/avatar/0?d=mp")
 				.email(newUser.getEmail())
 				.name(newUser.getName())
-				.password(encodedPassword)
+				.password(hashPassword)
 				.block(false)
 				.role("ROLE_USER")
 				.favoritePosts(new HashSet<String>())
 				.build();
 		user = accountRepository.save(user);
 		return convertor.convertToRegisterUserDto(user);
-	}
-
-	private String Encoder(String password) {
-		byte[] decodeBytes = Base64.getEncoder().encode(password.getBytes());
-		return new String(decodeBytes);
 	}
 
 	@Override
