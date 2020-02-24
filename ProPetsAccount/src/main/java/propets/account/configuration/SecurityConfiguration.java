@@ -18,6 +18,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/{lang}/account/v1");
+		web.ignoring().antMatchers(HttpMethod.GET, "/{lang}/account/v1/{login}/info");
 		
 	}
 	
