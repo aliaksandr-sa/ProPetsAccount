@@ -1,5 +1,6 @@
 package propets.account.service;
 
+import java.nio.ByteBuffer;
 import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,17 +36,23 @@ public class AccountServiceImpl implements AccountService {
 		if (accountRepository.existsById(login)) {
 			throw new ConflictException();
 		}
+		String encodedPassword = Encoder(newUser.getPassword());
 		User user = User.builder()
 				.avatar("https://www.gravatar.com/avatar/0?d=mp")
 				.email(newUser.getEmail())
 				.name(newUser.getName())
-				.password(newUser.getPassword())
+				.password(encodedPassword)
 				.block(false)
 				.role("ROLE_USER")
 				.favoritePosts(new HashSet<String>())
 				.build();
 		user = accountRepository.save(user);
 		return convertor.convertToRegisterUserDto(user);
+	}
+
+	private String Encoder(String password) {
+		byte[] decodeBytes = Base64.getEncoder().encode(password.getBytes());
+		return new String(decodeBytes);
 	}
 
 	@Override
