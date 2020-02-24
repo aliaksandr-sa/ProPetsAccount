@@ -14,7 +14,7 @@ public interface AccountService {
 
 	UserDto loginUser(String token);
 
-	UserDto userInformation(String login, String token);
+	UserDto userInformation(String login);
 
 	UserDto editUserProfile(EditUserDto editUser, String login, String token);
 
