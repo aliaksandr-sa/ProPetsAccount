@@ -39,6 +39,7 @@ public class AccountServiceImpl implements AccountService {
 				.avatar("https://www.gravatar.com/avatar/0?d=mp")
 				.email(newUser.getEmail())
 				.name(newUser.getName())
+				.password(newUser.getPassword())
 				.block(false)
 				.role("ROLE_USER")
 				.favoritePosts(new HashSet<String>())

@@ -26,6 +26,8 @@ public class User {
 	String name;
 	@Id
 	String email;
+	@Setter
+	String password;
 	String phone;
 	Boolean block;
 	@Singular
